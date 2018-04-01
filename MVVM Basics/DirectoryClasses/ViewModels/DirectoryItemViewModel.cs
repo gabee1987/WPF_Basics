@@ -4,6 +4,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 
 namespace MVVM_Basics
 {
@@ -12,6 +13,9 @@ namespace MVVM_Basics
     /// </summary>
     public class DirectoryItemViewModel : BaseViewModel
     {
+        #region Public Properties
+
+
         /// <summary>
         /// The type of this item
         /// </summary>
@@ -38,6 +42,7 @@ namespace MVVM_Basics
         /// </summary>
         public bool CanExpand { get { return this.Type != DirectoryItemType.File; } }
 
+
         /// <summary>
         /// Indicates if the current is expanded or not
         /// </summary>
@@ -59,6 +64,21 @@ namespace MVVM_Basics
             }
         }
 
+        #endregion
+
+
+        #region Public Commands
+
+        /// <summary>
+        /// The command to expand this item
+        /// </summary>
+        public ICommand ExpandCommand { get; set; }
+
+        #endregion
+
+
+        #region Helper Methods
+
         /// <summary>
         /// Removes all children from the list, adding a dummy item to show the expand icon if required
         /// </summary>
@@ -72,6 +92,8 @@ namespace MVVM_Basics
                 this.Children.Add(null);
         }
 
+        #endregion
+
         /// <summary>
         /// Expand this directory and finds all children
         /// </summary>
@@ -79,5 +101,7 @@ namespace MVVM_Basics
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
