@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using MVVM_Basics.DirectoryClasses;
 
 namespace MVVM_Basics
 {

@@ -64,10 +64,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Directory\Data\DirectoryItem.cs" />
-    <Compile Include="Directory\Data\DirectoryItemType.cs" />
-    <Compile Include="Directory\DirectoryStructure.cs" />
-    <Compile Include="Directory\ViewModels\DirectoryItemViewModel.cs" />
+    <Compile Include="DirectoryClasses\Data\DirectoryItem.cs" />
+    <Compile Include="DirectoryClasses\Data\DirectoryItemType.cs" />
+    <Compile Include="DirectoryClasses\DirectoryStructure.cs" />
+    <Compile Include="DirectoryClasses\ViewModels\BaseViewModel.cs" />
+    <Compile Include="DirectoryClasses\ViewModels\DirectoryItemViewModel.cs" />
     <Compile Include="HeaderToImageConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

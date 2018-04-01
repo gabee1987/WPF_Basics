@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
-namespace MVVM_Basics
+namespace MVVM_Basics.DirectoryClasses
 {
     /// <summary>
     /// A helper class to query information about directories
@@ -17,7 +16,7 @@ namespace MVVM_Basics
         public static List<DirectoryItem> GetLogicalDrives()
         {
             // Get every logical drive on the machine
-            return Directory.GetLogicalDrives().Select(drive => new DirectoryItem { FullPath = drive, Type = DirectoryItemType.Drive }).ToList();
+            return System.IO.Directory.GetLogicalDrives().Select(drive => new DirectoryItem { FullPath = drive, Type = DirectoryItemType.Drive }).ToList();
         }
 
 
@@ -35,7 +34,7 @@ namespace MVVM_Basics
             // Try and get directories from the folder
             try
             {
-                var dirs = Directory.GetDirectories(fullPath);
+                var dirs = System.IO.Directory.GetDirectories(fullPath);
 
                 if (dirs.Length > 0)
                     items.AddRange(dirs.Select(dir => new DirectoryItem { FullPath = dir, Type = DirectoryItemType.Folder }));
@@ -50,7 +49,7 @@ namespace MVVM_Basics
             // Try and get files from the folder
             try
             {
-                var files = Directory.GetFiles(fullPath);
+                var files = System.IO.Directory.GetFiles(fullPath);
 
                 if (files.Length > 0)
                     items.AddRange(files.Select(file => new DirectoryItem { FullPath = file, Type = DirectoryItemType.File }));

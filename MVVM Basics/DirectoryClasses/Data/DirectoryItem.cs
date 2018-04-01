@@ -1,4 +1,6 @@
-﻿namespace MVVM_Basics
+﻿using MVVM_Basics.DirectoryClasses;
+
+namespace MVVM_Basics
 {
     /// <summary>
     /// Information about a directory item such as a drive, a file or folder
