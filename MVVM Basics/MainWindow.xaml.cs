@@ -17,7 +17,8 @@ namespace TreeViews_and_Value_Converters
         {
             InitializeComponent();
 
-            this.DataContext = new MVVMTest();
+            // Test INotifyPopertyChanged
+            //this.DataContext = new MVVMTest();
         }
 
         #endregion   
