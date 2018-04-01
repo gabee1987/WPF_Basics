@@ -3,9 +3,8 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using MVVM_Basics;
 
-namespace TreeViews_and_Value_Converters
+namespace MVVM_Basics
 {
 
     /// <summary>
