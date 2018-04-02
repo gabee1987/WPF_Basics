@@ -1,9 +1,7 @@
-﻿using System.IO;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using MVVM_Basics.DirectoryClasses;
 
 namespace MVVM_Basics
 {
@@ -11,7 +9,7 @@ namespace MVVM_Basics
     /// <summary>
     /// Converts a full path to a specific image type of a drive, folder or file
     /// </summary>
-    [ValueConversion(typeof(string), typeof(BitmapImage))]
+    [ValueConversion(typeof(DirectoryItemType), typeof(BitmapImage))]
     public class HeaderToImageConverter : IValueConverter
     {
 
@@ -19,24 +17,20 @@ namespace MVVM_Basics
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            // Get full path
-            var path = (string)value;
-
-            // If the path is null
-            if (path == null)
-                return null;
-
-            // Get the name of the file/folder
-            var name = DirectoryStructure.GetFileFolderName(path);
 
             // By default, we presume an image
             var image = "Images/file.png";
 
-            // If the name is blank, we presume it's a drive as we cannot have a blank file or folder name
-            if (string.IsNullOrEmpty(name))
-                image = "Images/hdd.png";
-            else if (new FileInfo(path).Attributes.HasFlag(FileAttributes.Directory))
-                image = "Images/folder-close.png";
+            switch ((DirectoryItemType)value)
+            {
+                case DirectoryItemType.Drive:
+                    image = "Images/hdd.png";
+                    break;
+                case DirectoryItemType.Folder:
+                    image = "Images/folder-close.png";
+                    break;
+            }
+                
 
             return new BitmapImage(new Uri($"pack://application:,,,/{image}"));
         }

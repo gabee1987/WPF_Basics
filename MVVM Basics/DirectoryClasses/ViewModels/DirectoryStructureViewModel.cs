@@ -1,19 +1,17 @@
-﻿using MVVM_Basics.DirectoryClasses;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace MVVM_Basics
 {
     /// <summary>
-    /// The view model for the applications main directory view
+    /// The view model for the applications main Directory view
     /// </summary>
     public class DirectoryStructureViewModel : BaseViewModel
     {
-        #region Public properties
-
+        #region Public Properties
 
         /// <summary>
-        /// A list of all directories of the machines
+        /// A list of all directories on the machine
         /// </summary>
         public ObservableCollection<DirectoryItemViewModel> Items { get; set; }
 
@@ -26,7 +24,7 @@ namespace MVVM_Basics
         /// </summary>
         public DirectoryStructureViewModel()
         {
-            // Get logical drives
+            // Get the logical drives
             var children = DirectoryStructure.GetLogicalDrives();
 
             // Create the view models from the data

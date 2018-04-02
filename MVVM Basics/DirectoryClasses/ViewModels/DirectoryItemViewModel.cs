@@ -1,17 +1,15 @@
-﻿using MVVM_Basics.DirectoryClasses;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
 namespace MVVM_Basics
 {
     /// <summary>
-    /// A View model for each directory item
+    /// A view model for each directory item
     /// </summary>
     public class DirectoryItemViewModel : BaseViewModel
     {
         #region Public Properties
-
 
         /// <summary>
         /// The type of this item
@@ -28,7 +26,6 @@ namespace MVVM_Basics
         /// </summary>
         public string Name { get { return this.Type == DirectoryItemType.Drive ? this.FullPath : DirectoryStructure.GetFileFolderName(this.FullPath); } }
 
-
         /// <summary>
         /// A list of all children contained inside this item
         /// </summary>
@@ -39,9 +36,8 @@ namespace MVVM_Basics
         /// </summary>
         public bool CanExpand { get { return this.Type != DirectoryItemType.File; } }
 
-
         /// <summary>
-        /// Indicates if the current is expanded or not
+        /// Indicates if the current item is expanded or not
         /// </summary>
         public bool IsExpanded
         {
@@ -55,15 +51,13 @@ namespace MVVM_Basics
                 if (value == true)
                     // Find all children
                     Expand();
-                // If the Ui tells us to close
+                // If the UI tells us to close
                 else
                     this.ClearChildren();
             }
         }
 
         #endregion
-
-
 
         #region Public Commands
 
@@ -86,9 +80,12 @@ namespace MVVM_Basics
             // Create commands
             this.ExpandCommand = new RelayCommand(Expand);
 
-            // Set type and path
+            // Set path and type
             this.FullPath = fullPath;
             this.Type = type;
+
+            // Setup the children as needed
+            this.ClearChildren();
         }
 
         #endregion
@@ -103,7 +100,7 @@ namespace MVVM_Basics
             // Clear items
             this.Children = new ObservableCollection<DirectoryItemViewModel>();
 
-            // Show the expand arrow if we are not on file
+            // Show the expand arrow if we are not a file
             if (this.Type != DirectoryItemType.File)
                 this.Children.Add(null);
         }
@@ -111,7 +108,7 @@ namespace MVVM_Basics
         #endregion
 
         /// <summary>
-        /// Expand this directory and finds all children
+        ///  Expands this directory and finds all children
         /// </summary>
         private void Expand()
         {
@@ -124,7 +121,5 @@ namespace MVVM_Basics
             this.Children = new ObservableCollection<DirectoryItemViewModel>(
                                 children.Select(content => new DirectoryItemViewModel(content.FullPath, content.Type)));
         }
-
-
     }
 }

@@ -17,6 +17,12 @@ namespace TreeViews_and_Value_Converters
         {
             InitializeComponent();
 
+            this.DataContext = new DirectoryStructureViewModel();
+
+            // For test purposes
+            //var item1 = dirViewModel.Items[0];
+            //dirViewModel.Items[0].ExpandCommand.Execute(null);
+
             // Test INotifyPopertyChanged
             //this.DataContext = new MVVMTest();
         }

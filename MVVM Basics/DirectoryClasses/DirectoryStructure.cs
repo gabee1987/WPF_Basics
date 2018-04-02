@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace MVVM_Basics.DirectoryClasses
+namespace MVVM_Basics
 {
     /// <summary>
     /// A helper class to query information about directories
