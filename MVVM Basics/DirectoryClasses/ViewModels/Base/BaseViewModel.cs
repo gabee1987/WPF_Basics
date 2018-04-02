@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
-namespace MVVM_Basics.Directory.ViewModels
+namespace MVVM_Basics
 {
     /// <summary>
     /// A base view model that fires the Property Phanged events as needed

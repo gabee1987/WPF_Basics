@@ -1,8 +1,5 @@
-﻿using MVVM_Basics.Directory.ViewModels;
-using MVVM_Basics.DirectoryClasses;
-using System;
+﻿using MVVM_Basics.DirectoryClasses;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -67,6 +64,7 @@ namespace MVVM_Basics
         #endregion
 
 
+
         #region Public Commands
 
         /// <summary>
@@ -76,6 +74,24 @@ namespace MVVM_Basics
 
         #endregion
 
+        #region Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="fullPath">The full path of this item</param>
+        /// <param name="type">The type of item</param>
+        public DirectoryItemViewModel(string fullPath, DirectoryItemType type)
+        {
+            // Create commands
+            this.ExpandCommand = new RelayCommand(Expand);
+
+            // Set type and path
+            this.FullPath = fullPath;
+            this.Type = type;
+        }
+
+        #endregion
 
         #region Helper Methods
 
@@ -99,7 +115,14 @@ namespace MVVM_Basics
         /// </summary>
         private void Expand()
         {
-            throw new NotImplementedException();
+            // We cannot expand a file
+            if (this.Type == DirectoryItemType.File)
+                return;
+
+            // Find all children
+            var children = DirectoryStructure.GetDirectoryContents(this.FullPath);
+            this.Children = new ObservableCollection<DirectoryItemViewModel>(
+                                children.Select(content => new DirectoryItemViewModel(content.FullPath, content.Type)));
         }
 
 
